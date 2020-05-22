@@ -27,6 +27,3 @@ def get_pbp_from_website(url):
   #if we made it this far without finding something, close driver
   driver.close()
 
-
-#if you need to install a driver
-#driver = webdriver.Chrome(ChromeDriverManager().install(), options = chromeOptions)
