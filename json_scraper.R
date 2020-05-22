@@ -40,6 +40,8 @@ for (j in 1 : nrow(scrape_me)) {
     jsonlite::write_json(json, glue::glue('raw/{season}/{season}_{formatC(week, width=2, flag=\"0\")}_{away}_{home}.json'))
     system(glue::glue('gzip raw/{season}/{season}_{formatC(week, width=2, flag=\"0\")}_{away}_{home}.json'))
     
+    system('rm -r /home/ben/.seleniumwire/storage-*')
+    
     message(glue::glue('Found a game ({season}/w{week}/{away}/{home}). Here is a play: {json$data$viewer$gameDetail$plays$playDescriptionWithJerseyNumbers[3]}'))
   } else {
     message('Nothing found for this game')
