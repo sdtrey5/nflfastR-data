@@ -8,7 +8,7 @@ games <- readRDS(url("https://github.com/leesharpe/nfldata/blob/master/data/game
 write_old_games <- function(id) { # id = new game_id
   
   #testing
-  id = '2009_18_NYJ_CIN'
+  #id = '2009_18_NYJ_CIN'
   
   if (id %in% c("2000_03_SD_KC", "2000_06_BUF_MIA")) {
     message(glue::glue("Warning: {id} is damaged in Nick's source and therefore missing!"))
@@ -53,8 +53,13 @@ games %>%
 
 
 
-flights3 <- stream_in(gzcon(url("http://jeroen.github.io/data/nycflights13.json.gz")))
+if (grepl("Documents",getwd())){
+  path <- ".."
+} else { ### server
+  path <- "/home/ben"
+}
 
+password = as.character(read.delim(glue::glue('{path}/gh.txt'))$pw)
 
 data_repo <- git2r::repository('./') # Set up connection to repository folder
 git2r::add(data_repo, 'raw/*') # add specific files to staging of commit
