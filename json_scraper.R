@@ -24,8 +24,7 @@ if (nrow(scrape_me) > 0) {
     game = scrape_me %>% slice(j)
     
     t <- get_pbp_from_website(game$url)
-    #t <- get_pbp_from_website('https://www.google.com')
-    
+
     if (!is.null(t)) {
       tryCatch({
         json <- as.character(t) %>%
@@ -66,20 +65,13 @@ if (nrow(scrape_me) > 0) {
   system('killall chrome')
   system('')
   
+  #thanks to Tan for the code
+  git2r::add(data_repo,'raw/*') # add specific files to staging of commit
+  git2r::commit(data_repo,message = glue::glue("Updating data at {Sys.time()}")) # commit the staged files with the chosen message
+  git2r::pull(data_repo) # pull repo (and pray there are no merge commits)
+  git2r::push(data_repo, credentials = git2r::cred_user_pass(username = 'guga31bb', password = paste(password))) # push commit
+  
+  message(paste('Successfully uploaded to GitHub at',Sys.time())) # I have cron set up to pipe this message to healthchecks.io
+  
 }
-
-
-###################################
-###### push to github #############
-###################################
-
-#thanks to Tan for the code
-git2r::add(data_repo,'raw/*') # add specific files to staging of commit
-git2r::commit(data_repo,message = glue::glue("Updating data at {Sys.time()}")) # commit the staged files with the chosen message
-git2r::pull(data_repo) # pull repo (and pray there are no merge commits)
-git2r::push(data_repo, credentials = git2r::cred_user_pass(username = 'guga31bb', password = paste(password))) # push commit
-
-message(paste('Successfully uploaded to GitHub values as of',Sys.time())) # I have cron set up to pipe this message to healthchecks.io
-
-
 

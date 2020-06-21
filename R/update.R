@@ -36,7 +36,7 @@ write_season <- function(y) {
 }
 
 #don't leave this uncommented as this is probably going to be run periodically
-#nothing_in_here <- lapply(2000:2019, write_season)
+#walk(1999:2019, write_season)
 
 
 ## STEP 2: SCRAPE ONGOING SEASON
@@ -49,9 +49,9 @@ sched <- fast_scraper_schedules(y) %>%
   select(game_id, week, season_type)
 
 pbp <- sched %>% pull(game_id) %>%
-  fast_scraper(source = 'api', pp = TRUE) %>%
+  fast_scraper(pp = TRUE) %>%
   clean_pbp() %>%
-  fix_fumbles()
+  add_qb_epa()
 
 write_csv(pbp, glue::glue('data/play_by_play_{y}.csv.gz'))
 saveRDS(pbp, glue::glue('data/play_by_play_{y}.rds'))
