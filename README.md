@@ -38,7 +38,7 @@ Or you can read .parquet like this:
 ```R
 # define which seasons shall be loaded
 seasons <- 2010:2019
-purrr::map_df(seasons, function(x) {
+pbp <- purrr::map_df(seasons, function(x) {
   download.file(glue::glue("https://raw.githubusercontent.com/guga31bb/nflfastR-data/master/data/play_by_play_{x}.parquet"), "tmp.parquet")
   df <- arrow::read_parquet("tmp.parquet")
   return(df)
