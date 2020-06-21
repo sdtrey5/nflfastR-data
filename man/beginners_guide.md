@@ -754,8 +754,8 @@ pbp_rp %>%
 #> # A tibble: 2 x 2
 #>    home     epa
 #>   <dbl>   <dbl>
-#> 1     0  0.0318
-#> 2     1 -0.0117
+#> 1     0  0.0326
+#> 2     1 -0.0110
 ```
 
 Note that EPA/play is similar for home teams and away teams because
@@ -1090,38 +1090,40 @@ it’s easier working with this file where each game is one row.
 ``` r
 games <- readRDS(url("http://www.habitatring.com/games.rds"))
 str(games)
-#> tibble [5,839 x 31] (S3: tbl_df/tbl/data.frame)
-#>  $ game_id    : chr [1:5839] "1999_01_MIN_ATL" "1999_01_KC_CHI" "1999_01_PIT_CLE" "1999_01_OAK_GB" ...
-#>  $ season     : int [1:5839] 1999 1999 1999 1999 1999 1999 1999 1999 1999 1999 ...
-#>  $ game_type  : chr [1:5839] "REG" "REG" "REG" "REG" ...
-#>  $ week       : int [1:5839] 1 1 1 1 1 1 1 1 1 1 ...
-#>  $ gameday    : chr [1:5839] "1999-09-12" "1999-09-12" "1999-09-12" "1999-09-12" ...
-#>  $ weekday    : chr [1:5839] "Sunday" "Sunday" "Sunday" "Sunday" ...
-#>  $ gametime   : chr [1:5839] NA NA NA NA ...
-#>  $ away_team  : chr [1:5839] "MIN" "KC" "PIT" "OAK" ...
-#>  $ away_score : int [1:5839] 17 17 43 24 14 3 10 30 25 28 ...
-#>  $ home_team  : chr [1:5839] "ATL" "CHI" "CLE" "GB" ...
-#>  $ home_score : int [1:5839] 14 20 0 28 31 41 19 28 24 20 ...
-#>  $ location   : chr [1:5839] "Home" "Home" "Home" "Home" ...
-#>  $ result     : int [1:5839] -3 3 -43 4 17 38 9 -2 -1 -8 ...
-#>  $ total      : int [1:5839] 31 37 43 52 45 44 29 58 49 48 ...
-#>  $ old_game_id: chr [1:5839] "1999091210" "1999091206" "1999091213" "1999091208" ...
-#>  $ gsis       : int [1:5839] 598 597 604 602 591 603 592 600 588 596 ...
-#>  $ pfr        : chr [1:5839] "199909120atl" "199909120chi" "199909120cle" "199909120gnb" ...
-#>  $ pff        : int [1:5839] NA NA NA NA NA NA NA NA NA NA ...
-#>  $ espn       : chr [1:5839] "190912001" "190912003" "190912005" "190912009" ...
-#>  $ spread_line: num [1:5839] -4 -3 -6 9 -3 5.5 3.5 7 -3 9.5 ...
-#>  $ total_line : num [1:5839] 49 38 37 43 45.5 49 38 44.5 37 42 ...
-#>  $ div_game   : int [1:5839] 0 0 1 0 1 0 1 1 1 0 ...
-#>  $ roof       : chr [1:5839] "dome" "outdoors" "outdoors" "outdoors" ...
-#>  $ surface    : chr [1:5839] "astroturf" "grass" "grass" "grass" ...
-#>  $ temp       : int [1:5839] NA 80 78 67 NA 76 NA 73 75 NA ...
-#>  $ wind       : int [1:5839] NA 12 12 10 NA 8 NA 5 3 NA ...
-#>  $ away_coach : chr [1:5839] "Dennis Green" "Gunther Cunningham" "Bill Cowher" "Jon Gruden" ...
-#>  $ home_coach : chr [1:5839] "Dan Reeves" "Dick Jauron" "Chris Palmer" "Ray Rhodes" ...
-#>  $ referee    : chr [1:5839] "Gerry Austin" "Phil Luckett" "Bob McElwee" "Tony Corrente" ...
-#>  $ stadium_id : chr [1:5839] "ATL00" "CHI98" "CLE00" "GNB00" ...
-#>  $ stadium    : chr [1:5839] "Georgia Dome" "Soldier Field" "Cleveland Browns Stadium" "Lambeau Field" ...
+#> tibble [5,839 x 33] (S3: tbl_df/tbl/data.frame)
+#>  $ game_id         : chr [1:5839] "1999_01_MIN_ATL" "1999_01_KC_CHI" "1999_01_PIT_CLE" "1999_01_OAK_GB" ...
+#>  $ season          : int [1:5839] 1999 1999 1999 1999 1999 1999 1999 1999 1999 1999 ...
+#>  $ game_type       : chr [1:5839] "REG" "REG" "REG" "REG" ...
+#>  $ week            : int [1:5839] 1 1 1 1 1 1 1 1 1 1 ...
+#>  $ gameday         : chr [1:5839] "1999-09-12" "1999-09-12" "1999-09-12" "1999-09-12" ...
+#>  $ weekday         : chr [1:5839] "Sunday" "Sunday" "Sunday" "Sunday" ...
+#>  $ gametime        : chr [1:5839] NA NA NA NA ...
+#>  $ away_team       : chr [1:5839] "MIN" "KC" "PIT" "OAK" ...
+#>  $ away_score      : int [1:5839] 17 17 43 24 14 3 10 30 25 28 ...
+#>  $ home_team       : chr [1:5839] "ATL" "CHI" "CLE" "GB" ...
+#>  $ home_score      : int [1:5839] 14 20 0 28 31 41 19 28 24 20 ...
+#>  $ location        : chr [1:5839] "Home" "Home" "Home" "Home" ...
+#>  $ result          : int [1:5839] -3 3 -43 4 17 38 9 -2 -1 -8 ...
+#>  $ total           : int [1:5839] 31 37 43 52 45 44 29 58 49 48 ...
+#>  $ old_game_id     : chr [1:5839] "1999091210" "1999091206" "1999091213" "1999091208" ...
+#>  $ away_moneyline  : int [1:5839] NA NA NA NA NA NA NA NA NA NA ...
+#>  $ home_moneyline  : int [1:5839] NA NA NA NA NA NA NA NA NA NA ...
+#>  $ spread_line     : num [1:5839] -4 -3 -6 9 -3 5.5 3.5 7 -3 9.5 ...
+#>  $ away_spread_odds: int [1:5839] NA NA NA NA NA NA NA NA NA NA ...
+#>  $ home_spread_odds: int [1:5839] NA NA NA NA NA NA NA NA NA NA ...
+#>  $ total_line      : num [1:5839] 49 38 37 43 45.5 49 38 44.5 37 42 ...
+#>  $ under_odds      : int [1:5839] NA NA NA NA NA NA NA NA NA NA ...
+#>  $ over_odds       : int [1:5839] NA NA NA NA NA NA NA NA NA NA ...
+#>  $ div_game        : int [1:5839] 0 0 1 0 1 0 1 1 1 0 ...
+#>  $ roof            : chr [1:5839] "dome" "outdoors" "outdoors" "outdoors" ...
+#>  $ surface         : chr [1:5839] "astroturf" "grass" "grass" "grass" ...
+#>  $ temp            : int [1:5839] NA 80 78 67 NA 76 NA 73 75 NA ...
+#>  $ wind            : int [1:5839] NA 12 12 10 NA 8 NA 5 3 NA ...
+#>  $ away_coach      : chr [1:5839] "Dennis Green" "Gunther Cunningham" "Bill Cowher" "Jon Gruden" ...
+#>  $ home_coach      : chr [1:5839] "Dan Reeves" "Dick Jauron" "Chris Palmer" "Ray Rhodes" ...
+#>  $ referee         : chr [1:5839] "Gerry Austin" "Phil Luckett" "Bob McElwee" "Tony Corrente" ...
+#>  $ stadium_id      : chr [1:5839] "ATL00" "CHI98" "CLE00" "GNB00" ...
+#>  $ stadium         : chr [1:5839] "Georgia Dome" "Soldier Field" "Cleveland Browns Stadium" "Lambeau Field" ...
 ```
 
 To start, we want to create a dataframe where each row is a team-season
@@ -1278,7 +1280,7 @@ pbp %>%
 #> 1 ARI       1999     0 -0.207 
 #> 2 ARI       1999     1 -0.153 
 #> 3 ARI       2000     0 -0.229 
-#> 4 ARI       2000     1 -0.0739
+#> 4 ARI       2000     1 -0.0677
 ```
 
 But this makes two rows per team-season. How to get each team-season on
@@ -1295,7 +1297,7 @@ pbp %>%
 #>   posteam season    `0`     `1`
 #>   <chr>    <int>  <dbl>   <dbl>
 #> 1 ARI       1999 -0.207 -0.153 
-#> 2 ARI       2000 -0.229 -0.0739
+#> 2 ARI       2000 -0.229 -0.0677
 #> 3 ARI       2001 -0.176  0.0745
 #> 4 ARI       2002 -0.139 -0.0714
 ```
@@ -1357,7 +1359,7 @@ defense %>%
 #>   defteam season def_rush_epa def_pass_epa
 #>   <chr>    <int>        <dbl>        <dbl>
 #> 1 TB        2002      -0.0760       -0.288
-#> 2 JAX       2017      -0.106        -0.234
+#> 2 JAX       2017      -0.104        -0.234
 #> 3 NE        2019      -0.158        -0.230
 #> 4 NYJ       2009      -0.101        -0.216
 #> 5 LA        2003      -0.0588       -0.209
@@ -1448,7 +1450,7 @@ data %>%
 #> 1 SEA     2012  11          167     -0.00136       0.217       -0.0669
 #> 2 SEA     2013  13          186     -0.0928        0.185       -0.122 
 #> 3 SEA     2014  12          140      0.0292        0.145       -0.218 
-#> 4 SEA     2015  10          146     -0.0879        0.243       -0.138 
+#> 4 SEA     2015  10          146     -0.0879        0.239       -0.138 
 #> 5 SEA     2016  10.5         62     -0.115         0.106       -0.192 
 #> 6 SEA     2017   9           34     -0.176         0.0659      -0.116 
 #> 7 SEA     2018  10           81     -0.0196        0.222       -0.118 
@@ -1478,7 +1480,7 @@ data %>%
 #>   team  season  wins point_diff off_rush_epa off_pass_epa def_rush_epa
 #>   <chr>  <int> <dbl>      <int>        <dbl>        <dbl>        <dbl>
 #> 1 ARI     1999     6       -137       -0.207      -0.153     -0.000926
-#> 2 ARI     2000     3       -233       -0.229      -0.0739     0.0384  
+#> 2 ARI     2000     3       -233       -0.229      -0.0677     0.0384  
 #> 3 ARI     2001     7        -48       -0.176       0.0745    -0.0489  
 #> 4 ARI     2002     5       -155       -0.139      -0.0714    -0.00870 
 #> 5 ARI     2003     4       -227       -0.228      -0.117     -0.0497  
@@ -1500,10 +1502,10 @@ data %>%
 #>                     wins point_diff off_rush_epa off_pass_epa def_rush_epa
 #> wins                1.00       0.92         0.45         0.69        -0.30
 #> point_diff          0.92       1.00         0.50         0.75        -0.34
-#> off_rush_epa        0.45       0.50         1.00         0.41         0.03
-#> off_pass_epa        0.69       0.75         0.41         1.00        -0.02
-#> def_rush_epa       -0.30      -0.34         0.03        -0.02         1.00
-#> def_pass_epa       -0.56      -0.61        -0.04        -0.08         0.31
+#> off_rush_epa        0.45       0.50         1.00         0.41         0.04
+#> off_pass_epa        0.69       0.75         0.41         1.00        -0.01
+#> def_rush_epa       -0.30      -0.34         0.04        -0.01         1.00
+#> def_pass_epa       -0.56      -0.60        -0.03        -0.08         0.31
 #> prior_off_rush_epa  0.24       0.27         0.33         0.22         0.00
 #> prior_off_pass_epa  0.28       0.32         0.19         0.47         0.00
 #> prior_def_rush_epa -0.12      -0.14         0.02        -0.04         0.26
@@ -1511,28 +1513,28 @@ data %>%
 #> prior_point_diff    0.36       0.41         0.22         0.36        -0.09
 #>                    def_pass_epa prior_off_rush_epa prior_off_pass_epa
 #> wins                      -0.56               0.24               0.28
-#> point_diff                -0.61               0.27               0.32
-#> off_rush_epa              -0.04               0.33               0.19
+#> point_diff                -0.60               0.27               0.32
+#> off_rush_epa              -0.03               0.33               0.19
 #> off_pass_epa              -0.08               0.22               0.47
 #> def_rush_epa               0.31               0.00               0.00
-#> def_pass_epa               1.00              -0.10               0.01
+#> def_pass_epa               1.00              -0.10               0.02
 #> prior_off_rush_epa        -0.10               1.00               0.42
-#> prior_off_pass_epa         0.01               0.42               1.00
+#> prior_off_pass_epa         0.02               0.42               1.00
 #> prior_def_rush_epa         0.15               0.03              -0.02
-#> prior_def_pass_epa         0.28              -0.01              -0.07
-#> prior_point_diff          -0.19               0.49               0.75
+#> prior_def_pass_epa         0.28               0.00              -0.07
+#> prior_point_diff          -0.18               0.49               0.75
 #>                    prior_def_rush_epa prior_def_pass_epa prior_point_diff
 #> wins                            -0.12              -0.17             0.36
 #> point_diff                      -0.14              -0.20             0.41
 #> off_rush_epa                     0.02              -0.07             0.22
 #> off_pass_epa                    -0.04              -0.04             0.36
 #> def_rush_epa                     0.26               0.06            -0.09
-#> def_pass_epa                     0.15               0.28            -0.19
-#> prior_off_rush_epa               0.03              -0.01             0.49
+#> def_pass_epa                     0.15               0.28            -0.18
+#> prior_off_rush_epa               0.03               0.00             0.49
 #> prior_off_pass_epa              -0.02              -0.07             0.75
-#> prior_def_rush_epa               1.00               0.32            -0.36
+#> prior_def_rush_epa               1.00               0.32            -0.35
 #> prior_def_pass_epa               0.32               1.00            -0.59
-#> prior_point_diff                -0.36              -0.59             1.00
+#> prior_point_diff                -0.35              -0.59             1.00
 ```
 
 We’ve covered `select`, but here we see a new use where a minus sign
@@ -1565,13 +1567,13 @@ data %>%
 #> off_pass_epa       0.72       0.79         1.00         0.39             0.39
 #> off_rush_epa       0.42       0.48         0.39         1.00             0.19
 #> prior_point_diff   0.43       0.44         0.39         0.19             1.00
-#> prior_off_pass_epa 0.34       0.36         0.46         0.11             0.78
+#> prior_off_pass_epa 0.34       0.36         0.46         0.12             0.78
 #> prior_off_rush_epa 0.25       0.25         0.16         0.24             0.47
 #>                    prior_off_pass_epa prior_off_rush_epa
 #> wins                             0.34               0.25
 #> point_diff                       0.36               0.25
 #> off_pass_epa                     0.46               0.16
-#> off_rush_epa                     0.11               0.24
+#> off_rush_epa                     0.12               0.24
 #> prior_point_diff                 0.78               0.47
 #> prior_off_pass_epa               1.00               0.37
 #> prior_off_rush_epa               0.37               1.00
@@ -1588,9 +1590,9 @@ data %>%
 #>                    wins point_diff off_pass_epa off_rush_epa prior_point_diff
 #> wins               1.00       0.92         0.67         0.48             0.28
 #> point_diff         0.92       1.00         0.72         0.52             0.36
-#> off_pass_epa       0.67       0.72         1.00         0.49             0.34
-#> off_rush_epa       0.48       0.52         0.49         1.00             0.27
-#> prior_point_diff   0.28       0.36         0.34         0.27             1.00
+#> off_pass_epa       0.67       0.72         1.00         0.48             0.34
+#> off_rush_epa       0.48       0.52         0.48         1.00             0.26
+#> prior_point_diff   0.28       0.36         0.34         0.26             1.00
 #> prior_off_pass_epa 0.22       0.28         0.45         0.31             0.74
 #> prior_off_rush_epa 0.23       0.29         0.30         0.43             0.51
 #>                    prior_off_pass_epa prior_off_rush_epa
@@ -1629,22 +1631,22 @@ summary(fit)
 #> 
 #> Residuals:
 #>     Min      1Q  Median      3Q     Max 
-#> -7.6973 -1.8501  0.0695  2.1627  7.1230 
+#> -7.6910 -1.8953  0.0661  2.1669  7.1253 
 #> 
 #> Coefficients:
 #>                    Estimate Std. Error t value             Pr(>|t|)    
-#> (Intercept)          7.9383     0.3898  20.367 < 0.0000000000000002 ***
-#> prior_off_pass_epa   6.4582     1.3096   4.931           0.00000127 ***
-#> prior_off_rush_epa   6.4288     2.3552   2.730              0.00666 ** 
-#> prior_def_pass_epa  -3.8505     1.7409  -2.212              0.02763 *  
-#> prior_def_rush_epa  -5.6343     2.4438  -2.306              0.02172 *  
+#> (Intercept)          7.9305     0.3901  20.332 < 0.0000000000000002 ***
+#> prior_off_pass_epa   6.4991     1.3087   4.966           0.00000107 ***
+#> prior_off_rush_epa   6.5144     2.3560   2.765               0.0060 ** 
+#> prior_def_pass_epa  -3.6941     1.7487  -2.112               0.0354 *  
+#> prior_def_rush_epa  -5.6658     2.4349  -2.327               0.0205 *  
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> 
-#> Residual standard error: 2.825 on 347 degrees of freedom
+#> Residual standard error: 2.826 on 347 degrees of freedom
 #>   (32 observations deleted due to missingness)
-#> Multiple R-squared:  0.167,  Adjusted R-squared:  0.1574 
-#> F-statistic: 17.39 on 4 and 347 DF,  p-value: 0.0000000000005126
+#> Multiple R-squared:  0.1665, Adjusted R-squared:  0.1569 
+#> F-statistic: 17.33 on 4 and 347 DF,  p-value: 0.0000000000005626
 ```
 
 I’m actually pretty surprised passing offense isn’t higher here. How
@@ -1703,9 +1705,9 @@ preds %>%
 #>   prediction team 
 #>        <dbl> <chr>
 #> 1       11.4 BAL  
-#> 2       10.1 SF   
-#> 3        9.7 NE   
-#> 4        9.7 NO   
+#> 2       10   SF   
+#> 3        9.8 NO   
+#> 4        9.7 NE   
 #> 5        9.6 DAL
 ```
 
@@ -1808,6 +1810,8 @@ there’s a heavy dose of `mutate`, `group_by`, `arrange`, `lag`,
 
   - [Deryck97: nflfastR Python
     Guide](https://gist.github.com/Deryck97/dff8d33e9f841568201a2a0d5519ac5e)
+  - [Nick Wan: nflfastR Python Colab
+    Guide](https://colab.research.google.com/github/nickwan/colab_nflfastR/blob/master/nflfastR_starter.ipynb)
   - [Cory Jez: animated
     plot](https://github.com/jezlax/sports_analytics/blob/master/animated_nfl_scatter.py)
   - [903124S: Sampling

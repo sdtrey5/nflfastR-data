@@ -757,7 +757,8 @@ Looking at others' code is also a good way to learn. One option is to look throu
 
 ### Other code examples: Python
 
-* [Deryck97: nflscrapR Python Guide](https://gist.github.com/Deryck97/dff8d33e9f841568201a2a0d5519ac5e)
+* [Deryck97: nflfastR Python Guide](https://gist.github.com/Deryck97/dff8d33e9f841568201a2a0d5519ac5e)
+* [Nick Wan: nflfastR Python Colab Guide](https://colab.research.google.com/github/nickwan/colab_nflfastR/blob/master/nflfastR_starter.ipynb)
 * [Cory Jez: animated plot](https://github.com/jezlax/sports_analytics/blob/master/animated_nfl_scatter.py)
 * [903124S: Sampling EP](https://gist.github.com/903124/6693fdf6b991437a6d6ef9c5d935c83b)
 * [903124S: estimating EPA using nfldb](https://gist.github.com/903124/d304f76688b0699497a35b61b6d1e267)
